@@ -11,21 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.myapplication.Domain.Category;
-import com.example.myapplication.Domain.Foods;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewholder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
-    ArrayList<Category> items;
-    Context context; //Context provides access to application-specific resources like strings,
-                    // drawables, layouts, and so on. In a RecyclerView adapter, you might need access to resources
-                    // to inflate layouts, load images, or access localized strings.
-
+    private ArrayList<Category> items;
+    private Context context;
 
     public CategoryAdapter(ArrayList<Category> items) {
         this.items = items;
@@ -33,58 +27,48 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
 
     @NonNull
     @Override
-    public CategoryAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext(); //By calling getContext() on the parent, you're retrieving the Context associated with
-                                        // the RecyclerView or its immediate parent layout. This context can then be used within
-                                         // the adapter for various purposes such as inflating layouts, accessing resources, or starting activities.
-                                        //Also recyclerview adapter, parent refers to the parent ViewGroup to which the RecyclerView belongs.
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
-        return new viewholder(inflate);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Category category = items.get(position);
+        holder.titleTxt.setText(category.getName());
 
-        holder.titleTxt.setText(items.get(position).getName());
-
-        switch (position)
-        {
+        // Set background drawable based on position
+        switch (position) {
             case 0:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_0_background);
-            }
+                break;
             case 1:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_1_background);
-            }
+                break;
             case 2:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_2_background);
-            }
+                break;
             case 3:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_3_background);
-            }
+                break;
             case 4:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_4_background);
-            }
+                break;
             case 5:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_5_background);
-            }
+                break;
             case 6:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_6_background);
-            }
+                break;
             case 7:
-            {
                 holder.pic.setBackgroundResource(R.drawable.cat_7_background);
-            }
+                break;
         }
 
-        int drawableResourceId = context.getResources().getIdentifier(items.get(position).getImagePath(),
-                "drawable", holder.itemView.getContext().getPackageName());
+        // Load image using Glide
+        int drawableResourceId = context.getResources().getIdentifier(category.getImagePath(),
+                "drawable", context.getPackageName());
         Glide.with(context)
                 .load(drawableResourceId)
                 .into(holder.pic);
@@ -95,15 +79,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         return items.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTxt;
         ImageView pic;
-        public viewholder(@NonNull View itemView) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxt = itemView.findViewById(R.id.catNameTxt);
-
             pic = itemView.findViewById(R.id.imgCat);
-
         }
     }
 }

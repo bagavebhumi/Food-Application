@@ -4,7 +4,7 @@ public class Category {
 
     private int id;
     private String ImagePath;
-    private String name;
+    private String Name;
 
 
     public Category() {
@@ -28,10 +28,10 @@ public class Category {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 }
