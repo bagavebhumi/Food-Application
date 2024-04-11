@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class BaseActivity extends AppCompatActivity {
 FirebaseAuth mAuth; //fireBase.auth
 FirebaseDatabase database;
-    public String TAG="uilover";
+    public String TAG="uilover"; //This line declares a member variable TAG of type String and initializes it with the value "uilover". TAG is often used for logging purposes to identify log messages coming from this class.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
