@@ -34,7 +34,6 @@ public class ListFoodsActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         getIntentExtra();
-
         initList();
     }
 
@@ -78,8 +77,8 @@ public class ListFoodsActivity extends BaseActivity {
 
     private void getIntentExtra() {
 
-        categoryId = getIntent().getIntExtra("categoryId", 0);
-        categoryName = getIntent().getStringExtra("Category");
+        categoryId = getIntent().getIntExtra("CategoryId", 0);
+        categoryName = getIntent().getStringExtra("CategoryName");
         searchText = getIntent().getStringExtra("text");
         isSearch = getIntent().getBooleanExtra("isSearch", false);
 

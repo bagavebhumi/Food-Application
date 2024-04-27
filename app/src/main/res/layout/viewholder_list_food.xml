@@ -85,6 +85,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/priceTxt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/priceTxt"
+                app:srcCompat="@drawable/star"
                 tools:srcCompat="@drawable/star" />
 
             <TextView
